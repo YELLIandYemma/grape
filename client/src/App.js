@@ -3,7 +3,8 @@ import LoginButton from "./components/login";
 import LogoutButton from "./components/logout";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-
+import "./assets/style.sass";
+import NavBar from "./components/NavBar";
 function App() {
   const { isAuthenticated, user } = useAuth0();
   const [phones, setPhones] = useState([]);
@@ -43,36 +44,44 @@ function App() {
 
   if (isAuthenticated) {
     return (
-      <div>
-        <form>
-          <LogoutButton />
-          {phones.map((phone) => (
-            <div key={phone._id}>
-              <h1>{phone.title}</h1>
-              <h3>{phone.desc}</h3>
-              <h3>{phone.price}</h3>
-              <input
-                type="text"
-                placeholder="Enter Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              <button
-                type="button"
-                onClick={(e) => collectData(e, phone.title)}
-              >
-                Order {phone.title}
-              </button>
-            </div>
-          ))}
-        </form>
-      </div>
+      <>
+        <NavBar />
+        <div className="PhoneContainer" data-bs-theme="dark">
+          <form>
+            {phones.map((phone) => (
+              <div key={phone._id} className="phoneCard">
+                <h1>{phone.title}</h1>
+                <h3>{phone.desc}</h3>
+                <h3>{phone.price}</h3>
+
+                <input
+                  type="text"
+                  placeholder="Enter Address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <br />
+                <br />
+                <button
+                  type="button"
+                  onClick={(e) => collectData(e, phone.title)}
+                >
+                  Order {phone.title}
+                </button>
+              </div>
+            ))}
+          </form>
+        </div>
+      </>
     );
   } else {
     return (
-      <div className="centered">
-        <LoginButton />
-      </div>
+      <>
+        <div className="centered">
+          <LoginButton />
+          <div></div>
+        </div>
+      </>
     );
   }
 }

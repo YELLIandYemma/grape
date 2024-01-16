@@ -1,17 +1,27 @@
-$background-color:#3D3B40
+$background-color:#2b3035
 $heading-color: #525CEB
 $text-color: #BFCFE7
 $button-color:#d2c2dc
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap')   
+input:focus
+    outline-style: none
+    box-shadow: none
+.navbar
+  background-color: $background-color
 body
   background-color:$background-color
   color: $text-color
   font-family: 'Poppins', sans-serif
+  overflow-x: hidden
 .centered
-    display: flex
-    justify-content: center
-    align-items: center
-    height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100vh
+
+
+
+
 h1
     color: $heading-color
 
@@ -25,4 +35,19 @@ button
     border-color:$button-color
     border-radius: 5px
     font-family: 'Poppins', sans-serif
-    
+
+input
+  width: 15%  
+  padding: 10px  
+  margin-top: 10px 
+  border-style: solid
+  border-color: #063970
+  border-radius:0.1cm
+
+.phoneCard
+  transform: translate(14.5cm,2cm)
+
+
+.pfp
+  border-radius:100%
+  width:32px

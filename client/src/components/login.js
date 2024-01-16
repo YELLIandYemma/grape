@@ -5,7 +5,11 @@ import "../assets/style.sass";
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+  return (
+    <button className="login-button" onClick={() => loginWithRedirect()}>
+      Continue
+    </button>
+  );
 };
 
 export default LoginButton;
