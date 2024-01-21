@@ -1,37 +1,25 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "express-backend/**/*.js",
-      "use": "@now/node-server"
-    },
-    {
-      "src": "client/build/**",
-      "use": "@now/static"
-    }
+    { "src": "index.js", "use": "@vercel/node" },
+    { "src": "models/**/*", "use": "@vercel/node" }
   ],
   "routes": [
     { "handle": "filesystem" },
     {
-      "src": "/api/.*",
-      "dest": "/express-backend/$1",
-      "status": 200
+      "src": "/api/orders",
+      "dest": "models/orders.js",
+      "methods": ["POST"]
     },
     {
       "src": "/(.*)",
-      "dest": "/client/build/$1"
+      "dest": "index.js"
     }
   ],
   "functions": {
-    "api/**/*.js": { "runtime": "nodejs12.x", "includeFiles": "api/**/*.js" }
-  },
-  "install": {
-    "include": ["express-backend/package.json", "client/package.json"]
-  },
-  "build": {
-    "env": { "NODE_ENV": "production" },
-    "scripts": {
-      "build": "npm run build"
+    "api/**/*.js": {
+      "runtime": "nodejs12.x",
+      "includeFiles": "api/**/*.js"
     }
   }
 }
