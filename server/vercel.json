@@ -7,7 +7,7 @@
   "routes": [
     { "handle": "filesystem" },
     {
-      "src": "/api/orders",
+      "src": "/orders",
       "dest": "models/orders.js",
       "methods": ["POST"]
     },
@@ -15,11 +15,5 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs12.x",
-      "includeFiles": "api/**/*.js"
-    }
-  }
+  ]
 }
