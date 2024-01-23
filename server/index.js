@@ -15,6 +15,7 @@ app.get("/phones", (req, res) => {
     .find()
     .then((phones) => res.json(phones))
     .catch((err) => res.json(err));
+  33333333;
 });
 
 app.post("/orders", async (req, res) => {

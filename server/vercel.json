@@ -1,19 +1,26 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "index.js", "use": "@vercel/node" },
-    { "src": "models/**/*", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/api/orders",
-      "dest": "models/orders.js",
-      "methods": ["POST"]
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs12.x",
+      "includeFiles": "api/**/*.js",
+      "maxDuration": 30
     },
-    {
-      "src": "/(.*)",
-      "dest": "index.js"
-    }
-  ]
+    "builds": [
+      { "src": "index.js", "use": "@vercel/node" },
+      { "src": "models/**/*", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "handle": "filesystem" },
+      {
+        "src": "/api/orders",
+        "dest": "models/orders.js",
+        "methods": ["POST"]
+      },
+      {
+        "src": "/(.*)",
+        "dest": "index.js"
+      }
+    ]
+  }
 }
